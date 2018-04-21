@@ -25,6 +25,7 @@ resp = RestClient.get(
 )
 
 puts "url: #{resp.request.url}"
+puts "~~~~~~~~~~~~~~~~~~~~~~~~"
 puts 'Please right-click + copy link on the "use this account" button and paste in here:'
 input_url = gets.chomp
 session_token_code = /de=(.*)\&/.match(input_url)[1]
@@ -80,6 +81,8 @@ resp = RestClient.post(
     user_agent: 'splat2ink/0.1'
   }
 )
+
+f = JSON.parse(resp.body)['f']
 
 payload = { "parameter": { "language": "en-US", "naBirthday": na_birthday, "naCountry": "US", "naIdToken": id_token, "f": f } }
 
