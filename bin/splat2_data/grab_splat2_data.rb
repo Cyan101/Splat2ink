@@ -8,7 +8,7 @@ BASE_URL = 'https://app.splatoon2.nintendo.net'
 $splat2_data = {
   schedules: {
     regular: {},
-    ranked: {},
+    gachi: {}, # This is deleted and renamed to :ranked
     league: {}
   }
 }
@@ -16,4 +16,4 @@ $splat2_data = {
 # Grab info from splatoon2
 require_relative('schedules.rb')
 
-puts $splat2_data
+puts $splat2_data.to_json
