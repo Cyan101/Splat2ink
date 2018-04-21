@@ -1,6 +1,7 @@
 require 'base64'
 require 'rest-client'
 require 'json'
+require 'yaml'
 
 # Step 0 - Creating the login URL
 auth_state = Base64.urlsafe_encode64(SecureRandom.random_bytes(36))
@@ -24,11 +25,9 @@ resp = RestClient.get(
 )
 
 puts "url: #{resp.request.url}"
-puts "auth code: #{auth_code_verifier.delete('=')}"
 puts 'Please right-click + copy link on the "use this account" button and paste in here:'
 input_url = gets.chomp
-puts '----------------------------------------'
-puts session_token_code = /de=(.*)\&/.match(input_url)[1]
+session_token_code = /de=(.*)\&/.match(input_url)[1]
 
 # Step 1 - Get a session token
 resp = RestClient.post(
@@ -43,7 +42,7 @@ resp = RestClient.post(
   }
 )
 
-puts session_token = JSON.parse(resp.body)["session_token"]
+session_token = JSON.parse(resp.body)["session_token"]
 
 # Step 2 - Get id/service token
 resp = RestClient.post(
@@ -65,8 +64,7 @@ resp = RestClient.post(
   }
 )
 
-puts '~~~~~~~~~~~~'
-puts id_token = JSON.parse(resp.body)["id_token"]
+id_token = JSON.parse(resp.body)["id_token"]
 
 # Step 3 - Login to account
 puts "Please enter the accounts birthday in the format 'yyyy-mm-dd':"
@@ -82,8 +80,6 @@ resp = RestClient.post(
     user_agent: 'splat2ink/0.1'
   }
 )
-
-puts f = JSON.parse(resp.body)['f']
 
 payload = { "parameter": { "language": "en-US", "naBirthday": na_birthday, "naCountry": "US", "naIdToken": id_token, "f": f } }
 
@@ -106,9 +102,7 @@ resp = RestClient.post(
 
 )
 
-puts 'xd'
-puts resp.body
-puts webapi_creds = JSON.parse(resp.body)['result']['webApiServerCredential']['accessToken']
+webapi_creds = JSON.parse(resp.body)['result']['webApiServerCredential']['accessToken']
 
 # Step 4 - Get web API access token
 payload = { "parameter": { "id": "5741031244955648" } }
@@ -131,8 +125,7 @@ resp = RestClient.post(
   }
 )
 
-puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
-puts web_token = JSON.parse(resp.body)['result']['accessToken']
+web_token = JSON.parse(resp.body)['result']['accessToken']
 
 # Step 5 - Create a Splat2 API Cookie
 resp = RestClient.get(
@@ -143,4 +136,7 @@ resp = RestClient.get(
   }
 )
 
-puts splat2_cookie = resp.cookies['iksm_session']
+splat2_cookie = resp.cookies['iksm_session']
+
+config = { splat2cookie: splat2_cookie }
+File.open('../config.yaml', 'w') { |f| f.write(config.to_yaml) }
