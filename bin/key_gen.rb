@@ -3,6 +3,8 @@ require 'rest-client'
 require 'json'
 require 'yaml'
 
+# All steps are from https://github.com/ZekeSnider/NintendoSwitchRESTAPI#authentication-steps
+
 # Step 0 - Creating the login URL
 auth_state = Base64.urlsafe_encode64(SecureRandom.random_bytes(36))
 
@@ -82,7 +84,7 @@ resp = RestClient.post(
   }
 )
 
-f = JSON.parse(resp.body)['f']
+f = JSON.parse(resp.body)['f'] # HMAC code gen from https://github.com/frozenpandaman/splatnet2statink/wiki/api-docs
 
 payload = { "parameter": { "language": "en-US", "naBirthday": na_birthday, "naCountry": "US", "naIdToken": id_token, "f": f } }
 
