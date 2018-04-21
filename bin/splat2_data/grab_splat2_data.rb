@@ -1,6 +1,7 @@
 require 'rest-client'
 require 'yaml'
 require 'json'
+require 'open-uri'
 
 @splatnet2_token = YAML.load(File.read('../../config.yaml'))[:splatnet2_cookie]
 BASE_URL = 'https://app.splatoon2.nintendo.net'
