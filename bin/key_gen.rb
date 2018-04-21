@@ -143,5 +143,5 @@ resp = RestClient.get(
 
 splat2_cookie = resp.cookies['iksm_session']
 
-config = { splat2cookie: splat2_cookie }
+config = { splatnet2_cookie: splatnet2_cookie }
 File.open('../config.yaml', 'w') { |f| f.write(config.to_yaml) }
