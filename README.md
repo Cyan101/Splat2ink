@@ -17,6 +17,8 @@ Config is written in yaml, by default the port is `8080` and the default IP is `
 
 ## Personal to-do
 - [ ] Setup the frontend on a server (and setup https)
+- [ ] Write good code and put stuff into classes
+- [ ] Move the splat2_data http req's into a function
 
 ### Sidenotes:
 * Thanks to @ZekeSnider and @FrozenPandaman for their repo's and help.
