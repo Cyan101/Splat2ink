@@ -141,9 +141,9 @@ resp = RestClient.get(
   }
 )
 
-splat2_cookie = resp.cookies['iksm_session']
+splatnet2_cookie = resp.cookies['iksm_session']
 
 puts "Please edit config.yaml and modify the ip/port if you need"
 
 config = { splatnet2_cookie: splatnet2_cookie, ip: 'localhost', port: 8080 }
-File.open('../config.yaml', 'w') { |f| f.write(config.to_yaml) }
+File.open(Dir.pwd + '/config.yaml', 'w') { |f| f.write(config.to_yaml) }
