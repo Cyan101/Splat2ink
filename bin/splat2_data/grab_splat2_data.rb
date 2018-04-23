@@ -6,6 +6,18 @@ require 'open-uri'
 @splatnet2_token = YAML.load(File.read('../../config.yaml'))[:splatnet2_cookie]
 BASE_URL = 'https://app.splatoon2.nintendo.net'
 
+# Check if cookie works
+begin
+resp = RestClient.get(
+  BASE_URL,
+  cookies: { iksm_session: @splatnet2_token }
+)
+rescue RestClient::ExceptionWithResponse => e
+  puts 'Error - ' + e.response
+  abort('Please read the above error and try deleting config.yaml then run key_gen.rb again')
+end
+
+
 $splat2_data = { # Create a skeleton hash
   schedules: {
     regular: {},

@@ -1,4 +1,4 @@
-# Get schedules
+# Get schedules for regular, ranked and league mode
 
 resp = RestClient.get(
   BASE_URL + '/api/schedules',
