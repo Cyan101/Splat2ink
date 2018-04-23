@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    et-orbi (1.1.0)
+      tzinfo
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -8,19 +10,25 @@ GEM
     rack (2.0.4)
     rack-protection (2.0.1)
       rack
+    rufus-scheduler (3.4.2)
+      et-orbi (~> 1.0)
     sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
       rack-protection (= 2.0.1)
       tilt (~> 2.0)
     temple (0.8.0)
+    thread_safe (0.3.6)
     tilt (2.0.8)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   haml
+  rufus-scheduler
   sinatra
 
 BUNDLED WITH
