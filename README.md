@@ -4,6 +4,10 @@
 
 Hopefully I can get this to the point where it has a nice website as well as an Android/iOS app.
 
+## Info
+
+Config is written in yaml, by default the port is `8080` and the default IP is `localhost`
+
 ## Tasks
 
 - [x] Create a splatnet2 cookie to access the app
