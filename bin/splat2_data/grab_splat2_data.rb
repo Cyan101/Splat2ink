@@ -19,12 +19,17 @@ rescue RestClient::ExceptionWithResponse => e
   abort('Please read the above error and try deleting config.yaml then run key_gen.rb again')
 end
 
+def image_save(image_url)
+  File.write Dir.pwd + '/public/' + image_url, open(BASE_URL + image_url).read unless File.exist?(Dir.pwd + '/public/' + image_url)
+end
+
 def update_splat2_data(splatnet2_cookie)
   cookie_check(splatnet2_cookie)
   splat2_data = {} # Empty Hash that will be filled by the functions
 
   splat2_data[:schedules] = get_schedules(splatnet2_cookie)
-
+  splat2_data[:salmon_run] = get_salmon_run(splatnet2_cookie)
+  splat2_data[:store] = get_store(splatnet2_cookie)
   # Grab info from splatoon2
   splat2_data
 end

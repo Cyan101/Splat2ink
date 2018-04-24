@@ -27,8 +27,7 @@ def get_schedules(splatnet2_cookie)
       to_save[:time_end] = data['end_time']
       edited_schedules[x.to_sym][i] = to_save
       %i[stage_1 stage_2].each do |p| # Save the images for the maps locally
-        image_url = to_save[p][:image]
-        File.write Dir.pwd + '/public/' + image_url, open(BASE_URL + image_url).read unless File.exist?(Dir.pwd + '/public/' + image_url)
+        image_save(to_save[p][:image])
       end
     end
   end
