@@ -3,6 +3,7 @@ require 'yaml'
 require 'json'
 require 'open-uri'
 require_relative('schedules.rb')
+require_relative('salmon_run.rb')
 # TODO: - Splatnet2 Gear (/api/onlineshop/merchandises)
 # TODO - Salmon Run (/api/timeline)
 
@@ -20,7 +21,7 @@ rescue RestClient::ExceptionWithResponse => e
 end
 
 def image_save(image_url)
-  File.write Dir.pwd + '/public/' + image_url, open(BASE_URL + image_url).read unless File.exist?(Dir.pwd + '/public/' + image_url)
+  File.write Dir.pwd + '/public' + image_url, open(BASE_URL + image_url).read unless File.exist?(Dir.pwd + '/public' + image_url)
 end
 
 def update_splat2_data(splatnet2_cookie)
@@ -29,7 +30,7 @@ def update_splat2_data(splatnet2_cookie)
 
   splat2_data[:schedules] = get_schedules(splatnet2_cookie)
   splat2_data[:salmon_run] = get_salmon_run(splatnet2_cookie)
-  splat2_data[:store] = get_store(splatnet2_cookie)
+  #splat2_data[:store] = get_store(splatnet2_cookie)
   # Grab info from splatoon2
-  splat2_data
+  return splat2_data
 end
