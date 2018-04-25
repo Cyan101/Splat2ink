@@ -26,26 +26,59 @@ class MyApp extends StatelessWidget {
       ),
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('Splat2Ink'),
+          title: new Text('Game Modes: '),
         ),
-        body: new Column(
-          mainAxisSize: MainAxisSize.min,
+        body: new ListView(
           children: <Widget>[
             new FutureBuilder<Map>(
               future: fetchData(),
               builder: (context, snapshot) {
-                print(snapshot.hasData);
                 if (snapshot.hasData) {
-                  var regular_data = snapshot.data['schedules']['regular'];
-                  return new Card(
+                  var regularData = snapshot.data['schedules']['regular'];
+                  var rankedData = snapshot.data['schedules']['ranked'];
+                  var leagueData = snapshot.data['schedules']['league'];
+                  return new Column(
+                    children: <Widget>[
+                  new Card(
+                  child: new Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      new ListTile(
+                        leading: new Image.asset('res/icons/regular.png'),
+                        title: new Text('Regular Mode - ' + regularData[0.toString()]['game_type']),
+                        subtitle: new Text(
+                            regularData[0.toString()]['stage_1']['name'] + ' & ' + regularData[1.toString()]['stage_2']['name']),
+                        trailing: new Text('Xh XXmin'),
+                      ),
+                      new Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            new Flexible(
+                                child: new Image.network(
+                                    'https://app.splatoon2.nintendo.net' +
+                                        regularData[0.toString()]['stage_1']['image'])
+                            ),
+                            new Padding(padding: new EdgeInsets.all(2.0)),
+                            new Flexible(
+                                child: new Image.network(
+                                    'https://app.splatoon2.nintendo.net' +
+                                        regularData[1.toString()]['stage_2']['image'])
+                            )
+                          ]
+                      )
+                    ],
+                  ),
+                ),
+                  new Padding(padding: new EdgeInsets.all(4.0)),
+                  new Card(
                     child: new Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         new ListTile(
-                          leading: new Image.asset('res/icons/regular.png'),
-                          title: new Text('Regular Mode'),
+                          leading: new Image.asset('res/icons/ranked.png'),
+                          title: new Text('Ranked Mode - ' + rankedData[0.toString()]['game_type']),
                           subtitle: new Text(
-                              regular_data[0.toString()]['stage_1']['name'] + ' & ' + regular_data[1.toString()]['stage_2']['name']),
+                              rankedData[0.toString()]['stage_1']['name'] + ' & ' + rankedData[1.toString()]['stage_2']['name']),
                           trailing: new Text('Xh XXmin'),
                         ),
                         new Column(
@@ -54,19 +87,53 @@ class MyApp extends StatelessWidget {
                               new Flexible(
                                   child: new Image.network(
                                       'https://app.splatoon2.nintendo.net' +
-                                          regular_data[0.toString()]['stage_1']['image'])
+                                          rankedData[0.toString()]['stage_1']['image'])
                               ),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
                                   child: new Image.network(
                                       'https://app.splatoon2.nintendo.net' +
-                                          regular_data[1.toString()]['stage_2']['image'])
+                                          rankedData[1.toString()]['stage_2']['image'])
                               )
                             ]
                         )
                       ],
                     ),
+                  ),
+                  new Padding(padding: new EdgeInsets.all(4.0)),
+                  new Card(
+                    child: new Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        new ListTile(
+                          leading: new Image.asset('res/icons/league.png'),
+                          title: new Text('League Mode - ' + leagueData[0.toString()]['game_type']),
+                          subtitle: new Text(
+                              leagueData[0.toString()]['stage_1']['name'] + ' & ' + leagueData[1.toString()]['stage_2']['name']),
+                          trailing: new Text('Xh XXmin'),
+                        ),
+                        new Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              new Flexible(
+                                  child: new Image.network(
+                                      'https://app.splatoon2.nintendo.net' +
+                                          leagueData[0.toString()]['stage_1']['image'])
+                              ),
+                              new Padding(padding: new EdgeInsets.all(2.0)),
+                              new Flexible(
+                                  child: new Image.network(
+                                      'https://app.splatoon2.nintendo.net' +
+                                          leagueData[1.toString()]['stage_2']['image'])
+                              )
+                            ]
+                        )
+                      ],
+                    ),
+                  ),
+                    ],
                   );
+
                 } else if (snapshot.hasError) {
                   return new Text("${snapshot.error}");
                 }
