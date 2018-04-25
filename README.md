@@ -13,7 +13,9 @@ Config is written in yaml, by default the port is `8080` and the default IP is `
 - [x] Create a splatnet2 cookie to access the app
 - [ ] Create a backend/API for most of the splatnet2 information (and ensure it caches everything)
 - [ ] Create a frontend website for this backend/api
-- [ ] Create an app in [flutter.io](https://flutter.io/) that uses this backend
+- [~] Create an app in [flutter.io](https://flutter.io/) that uses this backend
+- [ ] Add a sidebar to the app to pick swap between game modes, salmon run and splatnet shop
+- [ ] Add a button to the top-right to see upcoming maps/modes
 
 ## Personal to-do
 - [ ] Setup the frontend on a server (and setup https)
