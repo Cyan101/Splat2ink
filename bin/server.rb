@@ -23,17 +23,15 @@ splat2_data = update_splat2_data(Config[:splatnet2_cookie])
 
 get '/' do
   # Frontend
-  splat2_data.to_json
+  'WIP'
 end
 
 get '/api/schedules/?' do
-  # output $splat2_data[:schedules]
-  ''
+  splat2_data[:schedules].to_json
 end
 
 get '/api/salmon_run/?' do
-  # output $splat2_data[:salmon_run]
-  ''
+  splat2_data[:salmon_run].to_json
 end
 
 get '/api/store/?' do
