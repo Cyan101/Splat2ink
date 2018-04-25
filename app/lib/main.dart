@@ -11,6 +11,7 @@ class AppMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      title: 'Splat2ink',
       home: new DefaultTabController(
         length: 3,
         child: new Scaffold(
