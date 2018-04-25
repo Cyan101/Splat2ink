@@ -1,5 +1,5 @@
-name: rest_test
-description: A new Flutter project.
+name: Splat2ink
+description: Lightweight tool to quickly view the current map rotations in Splatoon 2.
 
 dependencies:
   http: "^0.11.3+16"
@@ -17,6 +17,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the Icons class.
   uses-material-design: true
+
+  fonts:
+    - family: Slabo
+      fonts:
+        - asset: res/fonts/Slabo27px-Regular.ttf
 
   assets:
     - res/icons/regular.png

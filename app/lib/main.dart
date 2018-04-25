@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
 Future<Map> fetchData() async {
@@ -11,6 +10,18 @@ Future<Map> fetchData() async {
   final responseJson = json.decode(response.body);
 
   return responseJson;
+}
+
+timeLeft(endTime) {
+  var currentTime = DateTime.now().millisecondsSinceEpoch;
+  endTime = endTime * 1000;
+  var remainingTime = (endTime - currentTime) / 1000 / 60;
+  if (remainingTime >= 60) {
+    return '1h ' + (remainingTime - 60).toStringAsFixed(0) + 'min';
+  }
+  else {
+    return remainingTime.toStringAsFixed(0) + 'min';
+  }
 }
 
 
@@ -34,9 +45,9 @@ class MyApp extends StatelessWidget {
               future: fetchData(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  var regularData = snapshot.data['schedules']['regular'];
-                  var rankedData = snapshot.data['schedules']['ranked'];
-                  var leagueData = snapshot.data['schedules']['league'];
+                  var regularData = snapshot.data['schedules']['regular'][0.toString()];
+                  var rankedData = snapshot.data['schedules']['ranked'][0.toString()];
+                  var leagueData = snapshot.data['schedules']['league'][0.toString()];
                   return new Column(
                     children: <Widget>[
                   new Card(
@@ -45,86 +56,86 @@ class MyApp extends StatelessWidget {
                     children: <Widget>[
                       new ListTile(
                         leading: new Image.asset('res/icons/regular.png'),
-                        title: new Text('Regular Mode - ' + regularData[0.toString()]['game_type']),
+                        title: new Text('Regular Mode - ' + regularData['game_type'], style: new TextStyle(fontWeight: FontWeight.bold)),
                         subtitle: new Text(
-                            regularData[0.toString()]['stage_1']['name'] + ' & ' + regularData[1.toString()]['stage_2']['name']),
-                        trailing: new Text('Xh XXmin'),
+                            regularData['stage_1']['name'] + ' & ' + regularData['stage_2']['name'], style: new TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 15.0)),
+                        trailing: new Text(timeLeft(regularData['time_start'])),
                       ),
-                      new Column(
+                      new Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             new Flexible(
                                 child: new Image.network(
                                     'https://app.splatoon2.nintendo.net' +
-                                        regularData[0.toString()]['stage_1']['image'])
+                                        regularData['stage_1']['image'])
                             ),
                             new Padding(padding: new EdgeInsets.all(2.0)),
                             new Flexible(
                                 child: new Image.network(
                                     'https://app.splatoon2.nintendo.net' +
-                                        regularData[1.toString()]['stage_2']['image'])
+                                        regularData['stage_2']['image'])
                             )
                           ]
                       )
                     ],
                   ),
                 ),
-                  new Padding(padding: new EdgeInsets.all(4.0)),
+                  new Padding(padding: new EdgeInsets.all(6.0)),
                   new Card(
                     child: new Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         new ListTile(
                           leading: new Image.asset('res/icons/ranked.png'),
-                          title: new Text('Ranked Mode - ' + rankedData[0.toString()]['game_type']),
+                          title: new Text('Ranked Mode - ' + rankedData['game_type'], style: new TextStyle(fontWeight: FontWeight.bold)),
                           subtitle: new Text(
-                              rankedData[0.toString()]['stage_1']['name'] + ' & ' + rankedData[1.toString()]['stage_2']['name']),
-                          trailing: new Text('Xh XXmin'),
+                              rankedData['stage_1']['name'] + ' & ' + rankedData['stage_2']['name'],  style: new TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 15.0)),
+                          trailing: new Text(timeLeft(rankedData['time_start'])),
                         ),
-                        new Column(
+                        new Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
                                   child: new Image.network(
                                       'https://app.splatoon2.nintendo.net' +
-                                          rankedData[0.toString()]['stage_1']['image'])
+                                          rankedData['stage_1']['image'])
                               ),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
                                   child: new Image.network(
                                       'https://app.splatoon2.nintendo.net' +
-                                          rankedData[1.toString()]['stage_2']['image'])
+                                          rankedData['stage_2']['image'])
                               )
                             ]
                         )
                       ],
                     ),
                   ),
-                  new Padding(padding: new EdgeInsets.all(4.0)),
+                  new Padding(padding: new EdgeInsets.all(6.0)),
                   new Card(
                     child: new Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         new ListTile(
                           leading: new Image.asset('res/icons/league.png'),
-                          title: new Text('League Mode - ' + leagueData[0.toString()]['game_type']),
+                          title: new Text('League Mode - ' + leagueData['game_type'], style: new TextStyle(fontWeight: FontWeight.bold)),
                           subtitle: new Text(
-                              leagueData[0.toString()]['stage_1']['name'] + ' & ' + leagueData[1.toString()]['stage_2']['name']),
-                          trailing: new Text('Xh XXmin'),
+                              leagueData['stage_1']['name'] + ' & ' + leagueData['stage_2']['name'], style: new TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 15.0)),
+                          trailing: new Text(timeLeft(leagueData['time_start'])),
                         ),
-                        new Column(
+                        new Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
                                   child: new Image.network(
                                       'https://app.splatoon2.nintendo.net' +
-                                          leagueData[0.toString()]['stage_1']['image'])
+                                          leagueData['stage_1']['image'])
                               ),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
                                   child: new Image.network(
                                       'https://app.splatoon2.nintendo.net' +
-                                          leagueData[1.toString()]['stage_2']['image'])
+                                          leagueData['stage_2']['image'])
                               )
                             ]
                         )
