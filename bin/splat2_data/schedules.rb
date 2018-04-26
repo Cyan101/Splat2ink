@@ -8,9 +8,9 @@ def get_schedules(splatnet2_cookie)
   schedules = JSON.parse(resp.body)
 
   edited_schedules = {
-    regular: {},
-    gachi: {}, # This is deleted and renamed to :ranked
-    league: {}
+    regular: [],
+    gachi: [], # This is deleted and renamed to :ranked
+    league: []
   }
 
   # Save 4 "waves" of each mode
@@ -33,4 +33,5 @@ def get_schedules(splatnet2_cookie)
   end
 
   edited_schedules[:ranked] = edited_schedules.delete(:gachi) # Rename :gachi to :ranked
+  return edited_schedules
 end

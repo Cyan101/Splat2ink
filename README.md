@@ -8,6 +8,9 @@ Hopefully I can get this to the point where it has a nice website as well as an 
 
 Config is written in yaml, by default the port is `8080` and the default IP is `localhost`
 
+## Use
+Run the directory_setup.sh file and then bin/key_gen.rb
+
 ## Tasks
 
 - [x] Create a splatnet2 cookie to access the app
