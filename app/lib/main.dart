@@ -7,12 +7,13 @@ void main() => runApp(new AppMenu());
 
 
 
-class AppMenu extends StatefulWidget {
-  @override
-  createState() => new AppMenuState();
-}
+//class AppMenu extends StatefulWidget {
+//  @override
+//  createState() => new AppMenuState();
+//}
+//class AppMenuState extends State<AppMenu> {
 
-class AppMenuState extends State<AppMenu> {
+class AppMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -34,7 +35,7 @@ class AppMenuState extends State<AppMenu> {
             children: [
               new GameModes(),
               new SalmonRun(),
-              new Icon(Icons.remove),
+              new Icon(Icons.cake),
             ],
           ),
         ),

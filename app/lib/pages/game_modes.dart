@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
-class GameModes extends StatefulWidget {
-  @override
-  createState() => new GameModesState();
-}
+//class GameModes extends StatefulWidget {
+//  @override
+//  createState() => new GameModesState();
+//}
+//class GameModesState extends State<GameModes> {
 
-class GameModesState extends State<GameModes> {
+class GameModes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListView(

@@ -12,6 +12,7 @@ Future<Map> fetchData(toFetch) async {
   final response = await http.get(
       'http://splat2.ink/api/' + toFetch, headers: reqHeaders); //replace url with base url + toFetch
   final responseJson = json.decode(response.body);
+  print('Grabbing - ' + toFetch);
   return responseJson;
 }
 

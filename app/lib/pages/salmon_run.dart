@@ -3,12 +3,13 @@ import '../helpers/helpers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 
-class SalmonRun extends StatefulWidget {
-  @override
-  createState() => new SalmonRunState();
-}
+//class SalmonRun extends StatefulWidget {
+//  @override
+//  createState() => new SalmonRunState();
+//}
+//class SalmonRunState extends State<SalmonRun> {
 
-class SalmonRunState extends State<SalmonRun> with TickerProviderStateMixin {
+class SalmonRun extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListView(
