@@ -13,13 +13,26 @@ set :views, 'views'
 set :environment, :development # Change this to :production when ready
 
 # Update our data every hour
-scheduler = Rufus::Scheduler.new
-scheduler.every '1h' do
-  splat2_data = update_splat2_data(Config[:splatnet2_cookie])
+#scheduler = Rufus::Scheduler.new
+#scheduler.every '1m' do
+#  splat2_data = update_splat2_data(Config[:splatnet2_cookie])
+#end
+
+Thread.new do
+  begin
+    scheduler = Rufus::Scheduler.new
+    scheduler.cron '59 * * * *' do
+      $splat2_data = update_splat2_data(Config[:splatnet2_cookie])
+    end
+  rescue StandardError => e
+    $stderr << e.message
+    $stderr << e.backtrace.join("\n")
+  end
 end
 
+
 # Update our data for our first start-up
-splat2_data = update_splat2_data(Config[:splatnet2_cookie])
+$splat2_data = update_splat2_data(Config[:splatnet2_cookie])
 
 get '/' do
   # Frontend
@@ -27,11 +40,11 @@ get '/' do
 end
 
 get '/api/schedules/?' do
-  splat2_data[:schedules].to_json
+  $splat2_data[:schedules].to_json
 end
 
 get '/api/salmon_run/?' do
-  splat2_data[:salmon_run].to_json
+  $splat2_data[:salmon_run].to_json
 end
 
 get '/api/store/?' do
