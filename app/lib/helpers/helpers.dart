@@ -47,16 +47,6 @@ minToHours(timeMin) {
       'min';
 }
 
-minToHours2(timeMin) {
-  var timeHours = 0;
-  while (timeMin >= 60) {
-    timeHours++;
-    timeMin = timeMin - 60;
-  }
-  return [timeHours.toStringAsFixed(0), timeMin.toStringAsFixed(0)];
-}
-
-
 weaponCardBuild(weaponArray) {
   var cardList = <Widget>[];
   for (var i = 0; i < 4; i++) {
@@ -70,4 +60,18 @@ weaponCardBuild(weaponArray) {
   }
   return new Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: cardList);
+}
+
+imageRowBuild(image1, image2) {
+  return <Widget>[
+    new Flexible(
+        child: new CachedNetworkImage(
+            placeholder: new CircularProgressIndicator(),
+            imageUrl: baseUrl + image1)),
+    new Padding(padding: new EdgeInsets.all(2.0)),
+    new Flexible(
+        child: new CachedNetworkImage(
+            placeholder: new CircularProgressIndicator(),
+            imageUrl: baseUrl + image2))
+  ];
 }

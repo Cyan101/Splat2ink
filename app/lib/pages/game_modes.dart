@@ -2,20 +2,6 @@ import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-imageRowBuild(image1, image2) {
-  return <Widget>[
-    new Flexible(
-        child: new CachedNetworkImage(
-            placeholder: new CircularProgressIndicator(),
-            imageUrl: baseUrl + image1)),
-    new Padding(padding: new EdgeInsets.all(2.0)),
-    new Flexible(
-        child: new CachedNetworkImage(
-            placeholder: new CircularProgressIndicator(),
-            imageUrl: baseUrl + image2))
-  ];
-}
-
 class GameModes extends StatefulWidget {
   @override
   createState() => new GameModesState();
