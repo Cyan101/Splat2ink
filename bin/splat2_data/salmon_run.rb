@@ -27,6 +27,8 @@ def get_salmon_run(splatnet2_cookie)
       edited_weapon_data[:name] = weapon_data['name']
       edited_weapon_data[:image] = weapon_data['image']
       edited_weapon_data[:thumbnail] = weapon_data['thumbnail']
+      image_save(weapon_data['image'])
+      image_save(weapon_data['thumbnail'])
       salmon_run[:detailed][x][:weapons][i] = edited_weapon_data
     end
   end
