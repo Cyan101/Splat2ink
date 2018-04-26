@@ -51,3 +51,7 @@ get '/api/store/?' do
   # output $splat2_data[:store]
   ''
 end
+
+get '/images/*/:file' do
+  send_file("./public/images/#{params['splat'].first}/" + params[:file])
+end
