@@ -23,6 +23,18 @@ timeLeft(endTime) {
   return minToHours(remainingMin);
 }
 
+minToHours(timeMin) {
+  var timeHours = 0;
+  while (timeMin >= 60) {
+    timeHours++;
+    timeMin = timeMin - 60;
+  }
+  return timeHours.toStringAsFixed(0) +
+      'h ' +
+      timeMin.toStringAsFixed(0) +
+      'min';
+}
+
 salmonRunOutCheck(timeStart, timeEnd) {
   var currentTime = DateTime.now().millisecondsSinceEpoch;
   timeStart = timeStart * 1000;
@@ -36,17 +48,6 @@ salmonRunOutCheck(timeStart, timeEnd) {
   }
 }
 
-minToHours(timeMin) {
-  var timeHours = 0;
-  while (timeMin >= 60) {
-    timeHours++;
-    timeMin = timeMin - 60;
-  }
-  return timeHours.toStringAsFixed(0) +
-      'h ' +
-      timeMin.toStringAsFixed(0) +
-      'min';
-}
 
 weaponCardBuild(weaponArray) {
   var cardList = <Widget>[];
@@ -55,7 +56,7 @@ weaponCardBuild(weaponArray) {
       child: new Card(
           color: Colors.blueGrey,
           child: new CachedNetworkImage(
-              placeholder: new CircularProgressIndicator(),
+              placeholder: new Center(child: CircularProgressIndicator()),
               imageUrl: baseUrl + weaponArray[i]['thumbnail'])),
     ));
   }
@@ -67,12 +68,12 @@ imageRowBuild(image1, image2) {
   return <Widget>[
     new Flexible(
         child: new CachedNetworkImage(
-            placeholder: new CircularProgressIndicator(),
+            placeholder: new Center(child: CircularProgressIndicator()),
             imageUrl: baseUrl + image1)),
     new Padding(padding: new EdgeInsets.all(2.0)),
     new Flexible(
         child: new CachedNetworkImage(
-            placeholder: new CircularProgressIndicator(),
+            placeholder: new Center(child: CircularProgressIndicator()),
             imageUrl: baseUrl + image2))
   ];
 }
