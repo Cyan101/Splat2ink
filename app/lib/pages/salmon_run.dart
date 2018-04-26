@@ -5,16 +5,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 weaponCardBuild(weaponArray) {
   var cardList = <Widget>[];
   for (var i = 0; i < 4; i++) {
-    cardList.add(
-        new Expanded(
-          child: new Card(color: Colors.blueGrey,child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl: baseUrl + weaponArray[i]['thumbnail'])),
-        )
-    );
+    cardList.add(new Expanded(
+      child: new Card(
+          color: Colors.blueGrey,
+          child: new CachedNetworkImage(
+              placeholder: new CircularProgressIndicator(),
+              imageUrl: baseUrl + weaponArray[i]['thumbnail'])),
+    ));
   }
   return new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: cardList
-  );
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: cardList);
 }
 
 class SalmonRun extends StatelessWidget {
@@ -26,10 +26,8 @@ class SalmonRun extends StatelessWidget {
           future: fetchData('salmon_run'),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              var salmonRunData =
-              snapshot.data['detailed'][0];
-              var salmonRunData2 =
-              snapshot.data['detailed'][1];
+              var salmonRunData = snapshot.data['detailed'][0];
+              var salmonRunData2 = snapshot.data['detailed'][1];
               return new Column(
                 children: <Widget>[
                   new Card(
@@ -39,23 +37,25 @@ class SalmonRun extends StatelessWidget {
                         new ListTile(
                           leading: new Image.asset('res/icons/salmon_run.png'),
                           title: new Text('Salmon Run',
-                              style: new TextStyle(
-                                  fontWeight: FontWeight.bold)),
+                              style:
+                                  new TextStyle(fontWeight: FontWeight.bold)),
                           subtitle: new Text(salmonRunData['stage']['name'],
                               style: new TextStyle(
                                   color: Colors.black.withOpacity(0.8),
                                   fontSize: 15.0)),
-                          trailing:
-                          new Text(salmonRunOutCheck(salmonRunData['time_start'],salmonRunData['time_end'])),
+                          trailing: new Text(salmonRunOutCheck(
+                              salmonRunData['time_start'],
+                              salmonRunData['time_end'])),
                         ),
                         new Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-                                      baseUrl +
-                                          salmonRunData['stage']['image'])
-                              ),
+                                  child: new CachedNetworkImage(
+                                      placeholder:
+                                          new CircularProgressIndicator(),
+                                      imageUrl: baseUrl +
+                                          salmonRunData['stage']['image'])),
                             ]),
                         weaponCardBuild(salmonRunData['weapons']),
                       ],
@@ -69,24 +69,27 @@ class SalmonRun extends StatelessWidget {
                         new ListTile(
                           leading: new Image.asset('res/icons/salmon_run.png'),
                           title: new Text('Salmon Run',
-                              style: new TextStyle(
-                                  fontWeight: FontWeight.bold)),
+                              style:
+                                  new TextStyle(fontWeight: FontWeight.bold)),
                           subtitle: new Text(salmonRunData2['stage']['name'],
                               style: new TextStyle(
                                   color: Colors.black.withOpacity(0.8),
                                   fontSize: 15.0)),
-                          trailing:
-                          new Text(salmonRunOutCheck(salmonRunData2['time_start'],salmonRunData2['time_end'])),
+                          trailing: new Text(salmonRunOutCheck(
+                              salmonRunData2['time_start'],
+                              salmonRunData2['time_end'])),
                         ),
                         new Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-                                      baseUrl +
+                                  child: new CachedNetworkImage(
+                                      placeholder:
+                                          new CircularProgressIndicator(),
+                                      imageUrl: baseUrl +
                                           salmonRunData2['stage']['image'])),
                             ]),
-                          weaponCardBuild(salmonRunData2['weapons']),
+                        weaponCardBuild(salmonRunData2['weapons']),
                       ],
                     ),
                   ),
@@ -97,7 +100,7 @@ class SalmonRun extends StatelessWidget {
             }
 
             // By default, show a loading spinner
-            return new Center( child: CircularProgressIndicator());
+            return new Center(child: CircularProgressIndicator());
           },
         ),
       ],

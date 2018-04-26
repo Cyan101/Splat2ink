@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'pages/game_modes.dart';
 import 'pages/salmon_run.dart';
 
-
-
 void main() => runApp(new AppMenu());
 
 class AppMenu extends StatelessWidget {

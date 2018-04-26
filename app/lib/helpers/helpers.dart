@@ -2,9 +2,9 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-
 Future<Map> fetchData(toFetch) async {
-  final response = await http.get('http://splat2.ink/api/' + toFetch); //replace url with base url + toFetch
+  final response = await http.get(
+      'http://splat2.ink/api/' + toFetch); //replace url with base url + toFetch
   final responseJson = json.decode(response.body);
 
   return responseJson;
@@ -24,9 +24,8 @@ salmonRunOutCheck(timeStart, timeEnd) {
   if (timeStart > currentTime) {
     var minTilRelease = (timeStart - currentTime) / 1000 / 60;
     return "Upcoming In: " + minToHours(minTilRelease.round());
-  }
-  else {
-    var remainingMin = timeEnd  / 1000;
+  } else {
+    var remainingMin = timeEnd / 1000;
     return timeLeft(remainingMin.round());
   }
 }
@@ -37,7 +36,10 @@ minToHours(timeMin) {
     timeHours++;
     timeMin = timeMin - 60;
   }
-  return timeHours.toStringAsFixed(0) + 'h ' + timeMin.toStringAsFixed(0) + 'min';
+  return timeHours.toStringAsFixed(0) +
+      'h ' +
+      timeMin.toStringAsFixed(0) +
+      'min';
 }
 
 const baseUrl = 'http://splat2.ink';

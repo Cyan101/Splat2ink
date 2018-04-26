@@ -4,16 +4,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 imageRowBuild(image1, image2) {
   return <Widget>[
-  new Flexible(
-      child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl: baseUrl + image1)
-  ),
-  new Padding(padding: new EdgeInsets.all(2.0)),
-  new Flexible(
-  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-  baseUrl +  image2))
+    new Flexible(
+        child: new CachedNetworkImage(
+            placeholder: new CircularProgressIndicator(),
+            imageUrl: baseUrl + image1)),
+    new Padding(padding: new EdgeInsets.all(2.0)),
+    new Flexible(
+        child: new CachedNetworkImage(
+            placeholder: new CircularProgressIndicator(),
+            imageUrl: baseUrl + image2))
   ];
 }
-
 
 class GameModes extends StatelessWidget {
   @override
@@ -24,12 +25,9 @@ class GameModes extends StatelessWidget {
           future: fetchData('schedules'),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              var regularData =
-                  snapshot.data['regular'][0];
-              var rankedData =
-                  snapshot.data['ranked'][0];
-              var leagueData =
-                  snapshot.data['league'][0];
+              var regularData = snapshot.data['regular'][0];
+              var rankedData = snapshot.data['ranked'][0];
+              var leagueData = snapshot.data['league'][0];
               return new Column(
                 children: <Widget>[
                   new Card(
@@ -49,12 +47,13 @@ class GameModes extends StatelessWidget {
                               style: new TextStyle(
                                   color: Colors.black.withOpacity(0.8),
                                   fontSize: 15.0)),
-                          trailing:
-                              new Text(timeLeft(regularData['time_end'])),
+                          trailing: new Text(timeLeft(regularData['time_end'])),
                         ),
                         new Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: imageRowBuild(regularData['stage_1']['image'], regularData['stage_2']['image']))
+                            children: imageRowBuild(
+                                regularData['stage_1']['image'],
+                                regularData['stage_2']['image']))
                       ],
                     ),
                   ),
@@ -76,12 +75,13 @@ class GameModes extends StatelessWidget {
                               style: new TextStyle(
                                   color: Colors.black.withOpacity(0.8),
                                   fontSize: 15.0)),
-                          trailing:
-                              new Text(timeLeft(rankedData['time_end'])),
+                          trailing: new Text(timeLeft(rankedData['time_end'])),
                         ),
                         new Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: imageRowBuild(rankedData['stage_1']['image'], rankedData['stage_2']['image']))
+                            children: imageRowBuild(
+                                rankedData['stage_1']['image'],
+                                rankedData['stage_2']['image']))
                       ],
                     ),
                   ),
@@ -103,12 +103,13 @@ class GameModes extends StatelessWidget {
                               style: new TextStyle(
                                   color: Colors.black.withOpacity(0.8),
                                   fontSize: 15.0)),
-                          trailing:
-                              new Text(timeLeft(leagueData['time_end'])),
+                          trailing: new Text(timeLeft(leagueData['time_end'])),
                         ),
                         new Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: imageRowBuild(leagueData['stage_1']['image'], leagueData['stage_2']['image']))
+                            children: imageRowBuild(
+                                leagueData['stage_1']['image'],
+                                leagueData['stage_2']['image']))
                       ],
                     ),
                   ),
@@ -117,7 +118,7 @@ class GameModes extends StatelessWidget {
             } else if (snapshot.hasError) {
               return new Text("${snapshot.error}");
             }
-            return new Center( child: CircularProgressIndicator());
+            return new Center(child: CircularProgressIndicator());
           },
         ),
       ],
