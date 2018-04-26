@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+weaponCardBuild(weaponArray) {
+  var cardList = <Widget>[];
+  for (var i = 0; i < 4; i++) {
+    cardList.add(
+        new Expanded(
+          child: new Card(color: Colors.blueGrey,child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl: baseUrl + weaponArray[i]['thumbnail'])),
+        )
+    );
+  }
+  return new Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: cardList
+  );
+}
+
 class SalmonRun extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,15 +56,12 @@ class SalmonRun extends StatelessWidget {
                                       baseUrl +
                                           salmonRunData['stage']['image'])
                               ),
-                              new Padding(padding: new EdgeInsets.all(2.0)),
                             ]),
-                        new Row(
-                          // Put all weapons in here
-                        )
+                        weaponCardBuild(salmonRunData['weapons']),
                       ],
                     ),
                   ),
-                  new Padding(padding: new EdgeInsets.all(6.0)),
+                  new Padding(padding: new EdgeInsets.all(4.0)),
                   new Card(
                     child: new Column(
                       mainAxisSize: MainAxisSize.min,
@@ -73,11 +85,8 @@ class SalmonRun extends StatelessWidget {
                                   child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
                                           salmonRunData2['stage']['image'])),
-                              new Padding(padding: new EdgeInsets.all(2.0)),
                             ]),
-                        new Row(
-                          // Put all weapons in here
-                        )
+                          weaponCardBuild(salmonRunData2['weapons']),
                       ],
                     ),
                   ),

@@ -2,6 +2,19 @@ import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+imageRowBuild(image1, image2) {
+  return <Widget>[
+  new Flexible(
+      child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl: baseUrl + image1)
+  ),
+  new Padding(padding: new EdgeInsets.all(2.0)),
+  new Flexible(
+  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
+  baseUrl +  image2))
+  ];
+}
+
+
 class GameModes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,20 +54,11 @@ class GameModes extends StatelessWidget {
                         ),
                         new Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl: baseUrl + regularData['stage_1']['image'])
-                              ),
-                              new Padding(padding: new EdgeInsets.all(2.0)),
-                              new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-                                      baseUrl +
-                                          regularData['stage_2']['image']))
-                            ])
+                            children: imageRowBuild(regularData['stage_1']['image'], regularData['stage_2']['image']))
                       ],
                     ),
                   ),
-                  new Padding(padding: new EdgeInsets.all(6.0)),
+                  new Padding(padding: new EdgeInsets.all(4.0)),
                   new Card(
                     child: new Column(
                       mainAxisSize: MainAxisSize.min,
@@ -77,21 +81,11 @@ class GameModes extends StatelessWidget {
                         ),
                         new Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-                                      baseUrl +
-                                          rankedData['stage_1']['image'])),
-                              new Padding(padding: new EdgeInsets.all(2.0)),
-                              new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-                                      baseUrl +
-                                          rankedData['stage_2']['image']))
-                            ])
+                            children: imageRowBuild(rankedData['stage_1']['image'], rankedData['stage_2']['image']))
                       ],
                     ),
                   ),
-                  new Padding(padding: new EdgeInsets.all(6.0)),
+                  new Padding(padding: new EdgeInsets.all(4.0)),
                   new Card(
                     child: new Column(
                       mainAxisSize: MainAxisSize.min,
@@ -114,17 +108,7 @@ class GameModes extends StatelessWidget {
                         ),
                         new Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-                                      baseUrl +
-                                          leagueData['stage_1']['image'])),
-                              new Padding(padding: new EdgeInsets.all(2.0)),
-                              new Flexible(
-                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
-                                      baseUrl +
-                                          leagueData['stage_2']['image']))
-                            ])
+                            children: imageRowBuild(leagueData['stage_1']['image'], leagueData['stage_2']['image']))
                       ],
                     ),
                   ),
@@ -133,8 +117,6 @@ class GameModes extends StatelessWidget {
             } else if (snapshot.hasError) {
               return new Text("${snapshot.error}");
             }
-
-            // By default, show a loading spinner
             return new Center( child: CircularProgressIndicator());
           },
         ),
