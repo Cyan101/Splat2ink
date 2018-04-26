@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'pages/game_modes.dart';
 import 'pages/salmon_run.dart';
+import 'pages/testing.dart';
 
 void main() => runApp(new AppMenu());
 
-class AppMenu extends StatelessWidget {
+
+
+class AppMenu extends StatefulWidget {
+  @override
+  createState() => new AppMenuState();
+}
+
+class AppMenuState extends State<AppMenu> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -17,7 +25,7 @@ class AppMenu extends StatelessWidget {
             bottom: new TabBar(
               tabs: [
                 new Tab(icon: new Icon(Icons.format_paint)),
-                new Tab(icon: new Image.asset('res/icons/salmon_run_alt.png')),
+                new Tab(icon: new Icon(Icons.local_atm)),
                 new Tab(icon: new Icon(Icons.shop)),
               ],
             ),
@@ -27,7 +35,7 @@ class AppMenu extends StatelessWidget {
             children: [
               new GameModes(),
               new SalmonRun(),
-              new Icon(Icons.directions_bike),
+              new Test(),
             ],
           ),
         ),

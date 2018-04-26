@@ -16,7 +16,12 @@ imageRowBuild(image1, image2) {
   ];
 }
 
-class GameModes extends StatelessWidget {
+class GameModes extends StatefulWidget {
+  @override
+  createState() => new GameModesState();
+}
+
+class GameModesState extends State<GameModes> {
   @override
   Widget build(BuildContext context) {
     return new ListView(

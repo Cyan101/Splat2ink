@@ -2,22 +2,13 @@ import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-weaponCardBuild(weaponArray) {
-  var cardList = <Widget>[];
-  for (var i = 0; i < 4; i++) {
-    cardList.add(new Expanded(
-      child: new Card(
-          color: Colors.blueGrey,
-          child: new CachedNetworkImage(
-              placeholder: new CircularProgressIndicator(),
-              imageUrl: baseUrl + weaponArray[i]['thumbnail'])),
-    ));
-  }
-  return new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: cardList);
+
+class SalmonRun extends StatefulWidget {
+  @override
+  createState() => new SalmonRunState();
 }
 
-class SalmonRun extends StatelessWidget {
+class SalmonRunState extends State<SalmonRun> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new ListView(
