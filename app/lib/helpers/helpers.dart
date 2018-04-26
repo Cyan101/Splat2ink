@@ -1,21 +1,31 @@
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart'; // WARNING: Cached Images package can be bugged
 import 'dart:async';
 import 'dart:convert';
 
+class Globals {
+  static var httpCache = {};
+}
 
-const baseUrl = 'http://splat2.ink';
+const baseUrl = 'https://app.splatoon2.nintendo.net';
 
 Future<Map> fetchData(toFetch) async {
   var reqHeaders = {'User-Agent': 'Splat2ink App'};
-  final response = await http.get(
-      'http://splat2.ink/api/' + toFetch, headers: reqHeaders); //replace url with base url + toFetch
-  final responseJson = json.decode(response.body);
-  print('Grabbing - ' + toFetch);
-  return responseJson;
+  if (Globals.httpCache.containsKey(toFetch)) {
+    print('Data already saved');
+    return Globals.httpCache[toFetch];
+  }
+  else {
+    final response = await http.get(
+        'http://splat2.ink/api/' + toFetch,
+        headers: reqHeaders);
+    final responseJson = json.decode(response.body);
+    Globals.httpCache[toFetch] = responseJson;
+    print('Live data saved and grabbed');
+    return responseJson;
+  }
 }
-
 
 timeLeft(endTime) {
   var currentTime = DateTime.now().millisecondsSinceEpoch;

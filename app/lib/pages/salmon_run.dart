@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart'; // WARNING: Cached Images package can be bugged
 
 
 //class SalmonRun extends StatefulWidget {
