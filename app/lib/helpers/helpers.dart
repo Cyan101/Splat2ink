@@ -15,6 +15,7 @@ Future<Map> fetchData(toFetch) async {
   return responseJson;
 }
 
+
 timeLeft(endTime) {
   var currentTime = DateTime.now().millisecondsSinceEpoch;
   endTime = endTime * 1000;

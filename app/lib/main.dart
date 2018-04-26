@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'pages/game_modes.dart';
 import 'pages/salmon_run.dart';
-import 'pages/testing.dart';
 
 void main() => runApp(new AppMenu());
 
@@ -35,7 +34,7 @@ class AppMenuState extends State<AppMenu> {
             children: [
               new GameModes(),
               new SalmonRun(),
-              new Test(),
+              new Icon(Icons.remove),
             ],
           ),
         ),

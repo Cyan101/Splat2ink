@@ -109,7 +109,7 @@ class GameModesState extends State<GameModes> {
             } else if (snapshot.hasError) {
               return new Text("${snapshot.error}");
             }
-            return new Center(child: CircularProgressIndicator());
+            return new Padding(padding: EdgeInsets.only(top: 15.0),child: new Center(child: CircularProgressIndicator()));
           },
         ),
       ],

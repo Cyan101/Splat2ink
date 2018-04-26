@@ -91,7 +91,7 @@ class SalmonRunState extends State<SalmonRun> with TickerProviderStateMixin {
             }
 
             // By default, show a loading spinner
-            return new Center(child: CircularProgressIndicator());
+            return new Padding(padding: EdgeInsets.only(top: 15.0),child: new Center(child: CircularProgressIndicator()));
           },
         ),
       ],
