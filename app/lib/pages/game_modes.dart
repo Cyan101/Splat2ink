@@ -7,15 +7,15 @@ class GameModes extends StatelessWidget {
     return new ListView(
       children: <Widget>[
         new FutureBuilder<Map>(
-          future: fetchData(),
+          future: fetchData('schedules'),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var regularData =
-                  snapshot.data['schedules']['regular'][0.toString()];
+                  snapshot.data['regular'][0];
               var rankedData =
-                  snapshot.data['schedules']['ranked'][0.toString()];
+                  snapshot.data['ranked'][0];
               var leagueData =
-                  snapshot.data['schedules']['league'][0.toString()];
+                  snapshot.data['league'][0];
               return new Column(
                 children: <Widget>[
                   new Card(
@@ -43,12 +43,12 @@ class GameModes extends StatelessWidget {
                             children: <Widget>[
                               new Flexible(
                                   child: new Image.network(
-                                      'https://app.splatoon2.nintendo.net' +
+                                      baseUrl +
                                           regularData['stage_1']['image'])),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
                                   child: new Image.network(
-                                      'https://app.splatoon2.nintendo.net' +
+                                      baseUrl +
                                           regularData['stage_2']['image']))
                             ])
                       ],
@@ -80,12 +80,12 @@ class GameModes extends StatelessWidget {
                             children: <Widget>[
                               new Flexible(
                                   child: new Image.network(
-                                      'https://app.splatoon2.nintendo.net' +
+                                      baseUrl +
                                           rankedData['stage_1']['image'])),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
                                   child: new Image.network(
-                                      'https://app.splatoon2.nintendo.net' +
+                                      baseUrl +
                                           rankedData['stage_2']['image']))
                             ])
                       ],
@@ -117,12 +117,12 @@ class GameModes extends StatelessWidget {
                             children: <Widget>[
                               new Flexible(
                                   child: new Image.network(
-                                      'https://app.splatoon2.nintendo.net' +
+                                      baseUrl +
                                           leagueData['stage_1']['image'])),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
                                   child: new Image.network(
-                                      'https://app.splatoon2.nintendo.net' +
+                                      baseUrl +
                                           leagueData['stage_2']['image']))
                             ])
                       ],
