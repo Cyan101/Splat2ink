@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SalmonRun extends StatelessWidget {
   @override
@@ -36,9 +37,10 @@ class SalmonRun extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
-                                  child: new Image.network(
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
-                                          salmonRunData['stage']['image'])),
+                                          salmonRunData['stage']['image'])
+                              ),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                             ]),
                         new Row(
@@ -68,7 +70,7 @@ class SalmonRun extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
-                                  child: new Image.network(
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
                                           salmonRunData2['stage']['image'])),
                               new Padding(padding: new EdgeInsets.all(2.0)),
@@ -86,7 +88,7 @@ class SalmonRun extends StatelessWidget {
             }
 
             // By default, show a loading spinner
-            return new CircularProgressIndicator();
+            return new Center( child: CircularProgressIndicator());
           },
         ),
       ],

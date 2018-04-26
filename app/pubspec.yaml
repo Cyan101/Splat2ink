@@ -2,6 +2,7 @@ name: Splat2ink
 description: Lightweight tool to quickly view the current map rotations in Splatoon 2.
 
 dependencies:
+  cached_network_image: "^0.4.0"
   http: "^0.11.3+16"
   flutter:
     sdk: flutter

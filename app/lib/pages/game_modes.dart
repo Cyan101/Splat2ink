@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class GameModes extends StatelessWidget {
   @override
@@ -42,12 +43,11 @@ class GameModes extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
-                                  child: new Image.network(
-                                      baseUrl +
-                                          regularData['stage_1']['image'])),
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl: baseUrl + regularData['stage_1']['image'])
+                              ),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
-                                  child: new Image.network(
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
                                           regularData['stage_2']['image']))
                             ])
@@ -79,12 +79,12 @@ class GameModes extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
-                                  child: new Image.network(
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
                                           rankedData['stage_1']['image'])),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
-                                  child: new Image.network(
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
                                           rankedData['stage_2']['image']))
                             ])
@@ -116,12 +116,12 @@ class GameModes extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               new Flexible(
-                                  child: new Image.network(
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
                                           leagueData['stage_1']['image'])),
                               new Padding(padding: new EdgeInsets.all(2.0)),
                               new Flexible(
-                                  child: new Image.network(
+                                  child: new CachedNetworkImage(placeholder: new CircularProgressIndicator(), imageUrl:
                                       baseUrl +
                                           leagueData['stage_2']['image']))
                             ])
@@ -135,7 +135,7 @@ class GameModes extends StatelessWidget {
             }
 
             // By default, show a loading spinner
-            return new CircularProgressIndicator();
+            return new Center( child: CircularProgressIndicator());
           },
         ),
       ],
