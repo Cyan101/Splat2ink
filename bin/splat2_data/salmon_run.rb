@@ -11,6 +11,18 @@ def get_salmon_run(splatnet2_cookie)
     detailed: [{ stage: {}, weapons: [] }, { stage: {}, weapons: [] }],
     upcoming: [{}, {}, {}]
   }
+  alt_weapons = []
+  4.times do |x|
+    alt_weapons[x] = {'name' => 'Unknown',
+      'image' => '/images/bundled/46415ab807d382141c8b38a790de00f6.png',
+      'thumbnail' => '/images/bundled/46415ab807d382141c8b38a790de00f6.png'}
+  end
+  2.times do |x|
+    if (coop_schedules['details'][x]['weapons'].any?{ |e| e == nil })
+    coop_schedules['details'][x].delete('weapons')
+    coop_schedules['details'][x]['weapons'] = alt_weapons
+    end
+  end
 
   # Grab the detailed salmon run data from the response
   2.times do |x|
