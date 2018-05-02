@@ -1,12 +1,9 @@
-import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart'; // WARNING: Cached Images package can be bugged
 import 'dart:async';
 import 'dart:convert';
 
-class Globals {
-  static var httpCache = {};
-}
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 const baseUrl = 'https://app.splatoon2.nintendo.net';
 
@@ -27,11 +24,18 @@ Future<Map> fetchData(toFetch) async {
   }
 }
 
-timeLeft(endTime) {
-  var currentTime = DateTime.now().millisecondsSinceEpoch;
-  endTime = endTime * 1000;
-  var remainingMin = (endTime - currentTime) / 1000 / 60;
-  return minToHours(remainingMin);
+imageRowBuild(image1, image2) {
+  return <Widget>[
+    new Flexible(
+        child: new CachedNetworkImage(
+            placeholder: new Center(child: CircularProgressIndicator()),
+            imageUrl: baseUrl + image1)),
+    new Padding(padding: new EdgeInsets.all(2.0)),
+    new Flexible(
+        child: new CachedNetworkImage(
+            placeholder: new Center(child: CircularProgressIndicator()),
+            imageUrl: baseUrl + image2))
+  ];
 }
 
 minToHours(timeMin) {
@@ -58,46 +62,6 @@ salmonRunOutCheck(timeStart, timeEnd) {
     return timeLeft(remainingMin.round());
   }
 }
-
-
-weaponCardBuild(weaponArray) {
-  var cardList = <Widget>[];
-  for (var i = 0; i < 4; i++) {
-    cardList.add(new Expanded(
-      child: new Card(
-          color: Colors.blueGrey,
-          child: new CachedNetworkImage(
-              placeholder: new Center(child: CircularProgressIndicator()),
-              imageUrl: baseUrl + weaponArray[i]['thumbnail'])),
-    ));
-  }
-  return new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: cardList);
-}
-
-imageRowBuild(image1, image2) {
-  return <Widget>[
-    new Flexible(
-        child: new CachedNetworkImage(
-            placeholder: new Center(child: CircularProgressIndicator()),
-            imageUrl: baseUrl + image1)),
-    new Padding(padding: new EdgeInsets.all(2.0)),
-    new Flexible(
-        child: new CachedNetworkImage(
-            placeholder: new Center(child: CircularProgressIndicator()),
-            imageUrl: baseUrl + image2))
-  ];
-}
-
-//starCreator(amount) {
-//  var starList = <Widget>[];
-//  for (var i = 0; i < amount; i++) {
-//    starList.add(
-//      new Icon(Icons.star)
-//    );
-//  }
-//  return starList;
-//}
 
 storeItemCreator(storeData) {
   var times = storeData.length;
@@ -144,4 +108,41 @@ storeItemCreator(storeData) {
   }
 
   return listOfCards;
+}
+
+
+timeLeft(endTime) {
+  var currentTime = DateTime.now().millisecondsSinceEpoch;
+  endTime = endTime * 1000;
+  var remainingMin = (endTime - currentTime) / 1000 / 60;
+  return minToHours(remainingMin);
+}
+
+weaponCardBuild(weaponArray) {
+  var cardList = <Widget>[];
+  for (var i = 0; i < 4; i++) {
+    cardList.add(new Expanded(
+      child: new Card(
+          color: Colors.blueGrey,
+          child: new CachedNetworkImage(
+              placeholder: new Center(child: CircularProgressIndicator()),
+              imageUrl: baseUrl + weaponArray[i]['thumbnail'])),
+    ));
+  }
+  return new Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: cardList);
+}
+
+//starCreator(amount) {
+//  var starList = <Widget>[];
+//  for (var i = 0; i < amount; i++) {
+//    starList.add(
+//      new Icon(Icons.star)
+//    );
+//  }
+//  return starList;
+//}
+
+class Globals {
+  static var httpCache = {};
 }

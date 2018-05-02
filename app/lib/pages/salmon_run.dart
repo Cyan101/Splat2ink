@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
 import 'package:cached_network_image/cached_network_image.dart'; // WARNING: Cached Images package can be bugged
 
-
 //class SalmonRun extends StatefulWidget {
 //  @override
 //  createState() => new SalmonRunState();
@@ -92,7 +91,9 @@ class SalmonRun extends StatelessWidget {
             }
 
             // By default, show a loading spinner
-            return new Padding(padding: EdgeInsets.only(top: 15.0),child: new Center(child: CircularProgressIndicator()));
+            return new Padding(
+                padding: EdgeInsets.only(top: 15.0),
+                child: new Center(child: CircularProgressIndicator()));
           },
         ),
       ],

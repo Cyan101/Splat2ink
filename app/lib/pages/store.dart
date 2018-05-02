@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import '../helpers/helpers.dart';
-import 'package:cached_network_image/cached_network_image.dart'; // WARNING: Cached Images package can be bugged
+
+//class Store extends StatefulWidget {
+//  @override
+//  createState() => new StoreState();
+//}
+//class StoreState extends State<Store> {
 
 class Store extends StatelessWidget {
   @override
@@ -12,10 +17,7 @@ class Store extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var data = snapshot.data['store'];
-              return new Column(
-                children: storeItemCreator(data)
-              );
-
+              return new Column(children: storeItemCreator(data));
             } else if (snapshot.hasError) {
               return new Text("${snapshot.error}");
             }

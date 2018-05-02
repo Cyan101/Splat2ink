@@ -18,7 +18,9 @@ class AppMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.blue),
       title: 'Splat2ink',
+      color: Color.fromRGBO(29, 85, 211, 1.0),
       home: new DefaultTabController(
         length: 3,
         child: new Scaffold(
