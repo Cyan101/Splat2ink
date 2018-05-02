@@ -10,6 +10,11 @@ Config is written in yaml, by default the port is `8080` and the default IP is `
 
 ## Use
 Run the directory_setup.sh file and then bin/key_gen.rb
+Install/Setup Docker
+`docker build -t my-ruby-app .`
+`docker run -i -d -p 80:80 --name splat2ink-server my-ruby-app`
+
+
 
 ## Tasks
 
