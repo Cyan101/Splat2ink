@@ -115,7 +115,7 @@ storeItemCreator(storeData) {
                 children: <Widget>[
                   new Padding(padding: EdgeInsets.only(top: 18.0)),
                   new Text(data['name'], style: new TextStyle(fontSize: 25.0, fontFamily: 'Quicksand')),
-                  new CachedNetworkImage(imageUrl: baseUrl + data['image']),
+                  new CachedNetworkImage(imageUrl: baseUrl + data['thumbnail']),
                   new Row(
                     children: <Widget>[
                       new Image.asset('res/icons/coin.png', height: 38.0,),
