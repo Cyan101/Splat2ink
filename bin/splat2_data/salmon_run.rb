@@ -11,12 +11,11 @@ def get_salmon_run(splatnet2_cookie)
     detailed: [{ stage: {}, weapons: [] }, { stage: {}, weapons: [] }],
     upcoming: [{}, {}, {}]
   }
-  alt_weapons = []
-  4.times do |x|
-    alt_weapons[x] = {'name' => 'Unknown',
+  alt_weapons = Array.new(4) do |x|
+    { 'name' => 'Unknown',
       'image' => '/images/bundled/46415ab807d382141c8b38a790de00f6.png',
-      'thumbnail' => '/images/bundled/46415ab807d382141c8b38a790de00f6.png'}
-  end
+      'thumbnail' => '/images/bundled/46415ab807d382141c8b38a790de00f6.png' }
+    end
   2.times do |x|
     if (coop_schedules['details'][x]['weapons'].any?{ |e| e == nil })
     coop_schedules['details'][x].delete('weapons')
