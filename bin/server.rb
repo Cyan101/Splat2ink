@@ -48,8 +48,7 @@ get '/api/salmon_run/?' do
 end
 
 get '/api/store/?' do
-  # output $splat2_data[:store]
-  ''
+  $splat2_data[:store].to_json
 end
 
 get '/images/*/:file' do

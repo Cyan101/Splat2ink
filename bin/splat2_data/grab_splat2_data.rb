@@ -4,8 +4,7 @@ require 'json'
 require 'open-uri'
 require_relative('schedules.rb')
 require_relative('salmon_run.rb')
-# TODO: - Splatnet2 Gear (/api/onlineshop/merchandises)
-# TODO - Salmon Run (/api/timeline)
+require_relative('splatnet2_store.rb')
 
 BASE_URL = 'https://app.splatoon2.nintendo.net'.freeze
 
@@ -30,7 +29,6 @@ def update_splat2_data(splatnet2_cookie)
 
   splat2_data[:schedules] = get_schedules(splatnet2_cookie)
   splat2_data[:salmon_run] = get_salmon_run(splatnet2_cookie)
-  #splat2_data[:store] = get_store(splatnet2_cookie)
-  # Grab info from splatoon2
+  splat2_data[:store] = get_store(splatnet2_cookie)
   return splat2_data
 end
