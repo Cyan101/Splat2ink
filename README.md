@@ -20,11 +20,12 @@ docker run -i -d -p 80:80 --name splat2ink-server my-ruby-app
 ## Tasks
 
 - [x] Create a splatnet2 cookie to access the app
-- [ ] Create a backend/API for most of the splatnet2 information (and ensure it caches everything)
+- [x] Create a backend/API for most of the splatnet2 information (and ensure it caches everything)
 - [ ] Create a frontend website for this backend/api
 - [~] Create an app in [flutter.io](https://flutter.io/) that uses this backend
-- [ ] Add a sidebar to the app to pick swap between game modes, salmon run and splatnet shop
+- [x] Add a sidebar to the app to pick swap between game modes, salmon run and splatnet shop
 - [ ] Add a button to the top-right to see upcoming maps/modes
+- [ ] Add encoding + application type to return headers
 
 ## Personal to-do
 - [ ] Setup the frontend on a server (and setup https)
