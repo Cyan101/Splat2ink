@@ -88,3 +88,60 @@ imageRowBuild(image1, image2) {
             imageUrl: baseUrl + image2))
   ];
 }
+
+//starCreator(amount) {
+//  var starList = <Widget>[];
+//  for (var i = 0; i < amount; i++) {
+//    starList.add(
+//      new Icon(Icons.star)
+//    );
+//  }
+//  return starList;
+//}
+
+storeItemCreator(storeData) {
+  var times = storeData.length;
+  var listOfCards = <Widget>[];
+  print(storeData[0]);
+  for (var i = 0; i < times; i++) {
+    var data = storeData[i];
+    print(data);
+    listOfCards.add(
+        new Card(
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              new Column(
+                children: <Widget>[
+                  new Padding(padding: EdgeInsets.only(top: 18.0)),
+                  new Text(data['name'], style: new TextStyle(fontSize: 25.0, fontFamily: 'Quicksand')),
+                  new CachedNetworkImage(imageUrl: baseUrl + data['image']),
+                  new Row(
+                    children: <Widget>[
+                      new Image.asset('res/icons/coin.png', height: 38.0,),
+                      new Text(' ${data['price']}', style: new TextStyle(fontSize: 24.0, fontFamily: 'Quicksand')),
+                    ],
+                  ),
+                  new Padding(padding: EdgeInsets.only(bottom: 15.0)),
+                ],
+              ),
+              new Column(
+                  children: <Widget>[
+                    new CachedNetworkImage(imageUrl: baseUrl + data['brand']['image']),
+                    new CachedNetworkImage(imageUrl: baseUrl + data['skill']['image']),
+                    new Row(
+                      children: <Widget>[
+                        new Image.asset('res/icons/star.png', height: 50.0,),
+                        new Text('x${data['stars']}', style: new TextStyle(fontSize: 22.0, height: 1.4))
+                      ],
+                    )
+                  ]
+              )
+            ],
+          ),
+        )
+    );
+  }
+
+  return listOfCards;
+}

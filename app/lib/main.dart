@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'pages/game_modes.dart';
 import 'pages/salmon_run.dart';
+import 'pages/store.dart';
 
 void main() => runApp(new AppMenu());
 
@@ -35,7 +36,7 @@ class AppMenu extends StatelessWidget {
             children: [
               new GameModes(),
               new SalmonRun(),
-              new Icon(Icons.cake),
+              new Store(),
             ],
           ),
         ),

@@ -23,6 +23,12 @@ flutter:
     - family: Slabo
       fonts:
         - asset: res/fonts/Slabo27px-Regular.ttf
+    - family: Quicksand
+      fonts:
+        - asset:  res/fonts/Quicksand-Bold.ttf
+        - asset:  res/fonts/Quicksand-Medium.ttf
+        - asset:  res/fonts/Quicksand-Light.ttf
+        - asset:  res/fonts/Quicksand-Regular.ttf
 
   assets:
     - res/icons/regular.png
@@ -30,6 +36,8 @@ flutter:
     - res/icons/league.png
     - res/icons/salmon_run.png
     - res/icons/salmon_run_alt.png
+    - res/icons/coin.png
+    - res/icons/star.png
 
   # To add assets to your application, add an assets section here, in
   # this "flutter" section, as in:
