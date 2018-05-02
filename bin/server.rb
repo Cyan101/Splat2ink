@@ -13,10 +13,10 @@ set :views, 'views'
 set :environment, :development # Change this to :production when ready
 
 # Update our data every hour
-#scheduler = Rufus::Scheduler.new
-#scheduler.every '1m' do
+# scheduler = Rufus::Scheduler.new
+# scheduler.every '1m' do
 #  splat2_data = update_splat2_data(Config[:splatnet2_cookie])
-#end
+# end
 
 Thread.new do
   begin
@@ -29,7 +29,6 @@ Thread.new do
     $stderr << e.backtrace.join("\n")
   end
 end
-
 
 # Update our data for our first start-up
 $splat2_data = update_splat2_data(Config[:splatnet2_cookie])
