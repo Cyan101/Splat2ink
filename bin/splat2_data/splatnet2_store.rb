@@ -27,5 +27,5 @@ def get_store(splatnet2_cookie)
     end
   end
 
-  return edited_store
+  return {store: edited_store}
 end
