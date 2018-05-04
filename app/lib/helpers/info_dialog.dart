@@ -13,7 +13,12 @@ class InfoDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new Text('Splat2ink'),
-              new Text('Version - ${appVersion}', style: new TextStyle(fontSize: 15.0,),)
+              new Text(
+                'Version - ${appVersion}',
+                style: new TextStyle(
+                  fontSize: 15.0,
+                ),
+              )
             ],
           )
         ],
@@ -22,12 +27,16 @@ class InfoDialog extends StatelessWidget {
           'Disclaimer: This app is NOT affiliated with Nintendo. All product names, logos, and brands are property of their respective owners.',
           style: new TextStyle(fontSize: 14.0)),
       actions: <Widget>[
-        new FlatButton(onPressed: () {
-          OpenUrl('https://paypal.me/crazyandroid101');
-        }, child: new Text('Donate')),
-        new FlatButton(onPressed: () {
-          OpenUrl('https://github.com/Cyan101/Splat2ink');
-        }, child: new Text('Source Code')),
+        new FlatButton(
+            onPressed: () {
+              OpenUrl('https://paypal.me/crazyandroid101');
+            },
+            child: new Text('Donate')),
+        new FlatButton(
+            onPressed: () {
+              OpenUrl('https://github.com/Cyan101/Splat2ink');
+            },
+            child: new Text('Source Code')),
       ],
     );
   }

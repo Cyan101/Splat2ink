@@ -14,11 +14,9 @@ Future<Map> fetchData(toFetch) async {
   if (Globals.httpCache.containsKey(toFetch)) {
     print('Data already saved');
     return Globals.httpCache[toFetch];
-  }
-  else {
-    final response = await http.get(
-        'http://splat2.ink/api/' + toFetch,
-        headers: reqHeaders);
+  } else {
+    final response =
+        await http.get('http://splat2.ink/api/' + toFetch, headers: reqHeaders);
     final responseJson = json.decode(response.body);
     Globals.httpCache[toFetch] = responseJson;
     print('Live data saved and grabbed');
@@ -70,46 +68,52 @@ storeItemCreator(storeData) {
   var listOfCards = <Widget>[];
   for (var i = 0; i < times; i++) {
     var data = storeData[i];
-    listOfCards.add(
-        new Card(
-          child: new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    listOfCards.add(new Card(
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          new Column(
             children: <Widget>[
-              new Column(
+              new Padding(padding: EdgeInsets.only(top: 18.0)),
+              new Text(data['name'],
+                  style:
+                      new TextStyle(fontSize: 25.0, fontFamily: 'Quicksand')),
+              new CachedNetworkImage(imageUrl: baseUrl + data['thumbnail']),
+              new Row(
                 children: <Widget>[
-                  new Padding(padding: EdgeInsets.only(top: 18.0)),
-                  new Text(data['name'], style: new TextStyle(fontSize: 25.0, fontFamily: 'Quicksand')),
-                  new CachedNetworkImage(imageUrl: baseUrl + data['thumbnail']),
-                  new Row(
-                    children: <Widget>[
-                      new Image.asset('res/icons/coin.png', height: 38.0,),
-                      new Text(' ${data['price']}', style: new TextStyle(fontSize: 24.0, fontFamily: 'Quicksand')),
-                    ],
+                  new Image.asset(
+                    'res/icons/coin.png',
+                    height: 38.0,
                   ),
-                  new Padding(padding: EdgeInsets.only(bottom: 15.0)),
+                  new Text(' ${data['price']}',
+                      style: new TextStyle(
+                          fontSize: 24.0, fontFamily: 'Quicksand')),
                 ],
               ),
-              new Column(
-                  children: <Widget>[
-                    new CachedNetworkImage(imageUrl: baseUrl + data['brand']['image']),
-                    new CachedNetworkImage(imageUrl: baseUrl + data['skill']['image']),
-                    new Row(
-                      children: <Widget>[
-                        new Image.asset('res/icons/star.png', height: 50.0,),
-                        new Text('x${data['stars']}', style: new TextStyle(fontSize: 22.0, height: 1.4))
-                      ],
-                    )
-                  ]
-              )
+              new Padding(padding: EdgeInsets.only(bottom: 15.0)),
             ],
           ),
-        )
-    );
+          new Column(children: <Widget>[
+            new CachedNetworkImage(imageUrl: baseUrl + data['brand']['image']),
+            new CachedNetworkImage(imageUrl: baseUrl + data['skill']['image']),
+            new Row(
+              children: <Widget>[
+                new Image.asset(
+                  'res/icons/star.png',
+                  height: 50.0,
+                ),
+                new Text('x${data['stars']}',
+                    style: new TextStyle(fontSize: 22.0, height: 1.4))
+              ],
+            )
+          ])
+        ],
+      ),
+    ));
   }
 
   return listOfCards;
 }
-
 
 timeLeft(endTime) {
   var currentTime = DateTime.now().millisecondsSinceEpoch;
@@ -133,10 +137,8 @@ weaponCardBuild(weaponArray) {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: cardList);
 }
 
-void routeBuilder({ BuildContext context, Widget child}) {
-  showDialog(context: context,
-      builder: (BuildContext context) => child
-  );
+void routeBuilder({BuildContext context, Widget child}) {
+  showDialog(context: context, builder: (BuildContext context) => child);
 }
 
 OpenUrl(link) async {
