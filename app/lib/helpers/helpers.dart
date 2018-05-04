@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 const baseUrl = 'https://app.splatoon2.nintendo.net';
+const appVersion = '1.1';
 
 Future<Map> fetchData(toFetch) async {
   var reqHeaders = {'User-Agent': 'Splat2ink App'};
@@ -66,10 +68,8 @@ salmonRunOutCheck(timeStart, timeEnd) {
 storeItemCreator(storeData) {
   var times = storeData.length;
   var listOfCards = <Widget>[];
-  print(storeData[0]);
   for (var i = 0; i < times; i++) {
     var data = storeData[i];
-    print(data);
     listOfCards.add(
         new Card(
           child: new Row(
@@ -131,6 +131,21 @@ weaponCardBuild(weaponArray) {
   }
   return new Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: cardList);
+}
+
+void routeBuilder({ BuildContext context, Widget child}) {
+  showDialog(context: context,
+      builder: (BuildContext context) => child
+  );
+}
+
+OpenUrl(link) async {
+  var url = link;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
 
 //starCreator(amount) {
