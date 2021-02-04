@@ -1,4 +1,5 @@
 # Splat2ink
+![Splat2Ink App](https://raw.githubusercontent.com/Cyan101/Splat2ink/master/splat2ink_preview.png)
 ## The goal
 [Splat2.ink](https://splat2.ink) will be a backend and frontend for displaying information from the splatnet2 app, such as map rotations, ranked modes and the splatnet2 store.
 
