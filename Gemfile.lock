@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    concurrent-ruby (1.1.10)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     et-orbi (1.1.0)
@@ -30,10 +31,9 @@ GEM
       rack-protection (= 2.0.1)
       tilt (~> 2.0)
     temple (0.8.0)
-    thread_safe (0.3.6)
     tilt (2.0.8)
-    tzinfo (1.2.5)
-      thread_safe (~> 0.1)
+    tzinfo (2.0.5)
+      concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
